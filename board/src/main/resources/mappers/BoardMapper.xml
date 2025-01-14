@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.board.mapper.BoardMapper">
+<!-- insert: 등록 --> 
+<insert id="insert" parameterType="BoardDTO">
+	insert into tbl_board (
+                           bno
+                           ,title
+                           ,content
+                           ,writer
+							)
+	values (seq_board.nextval
+	        ,#{title}
+	        ,#{content}
+	        ,#{writer}
+	)
+</insert>
+<!-- update: 수정 --> 
+<update id="update" parameterType="BoardDTO">
+   update tbl_board
+      set title = #{title}
+	      ,content = #{content}
+	      ,writer = #{writer}
+	      ,updateDate = sysdate
+	  where bno = #{bno}
+</update>
+<!--delete: 삭제  -->
+<delete id="delete" parameterType="long">
+	delete tbl_board
+	where bno = #{bno}
+</delete>
+<!-- read: 단건조회--> 
+<select id="read" resultType="BoardDTO" parameterType="long">
+   select bno
+         ,title
+         ,content
+         ,writer
+         ,regdate
+   FROM tbl_board
+   WHERE bno = #{bno}
+</select>
+<!-- getList : 전체조회 -->
+<select id="getList" resultType="BoardDTO">
+    select bno
+         ,title
+         ,content
+         ,writer
+         ,regdate
+   FROM tbl_board
+   <![CDATA[
+   WHERE bno > 0
+  ]]>   
+</select>
+<!-- orderby 하는 것과  WHERE bno > 0 는 동일하다 왜냐하면 bno가 기본키 이기 때문에 by indexRowId순으로 정렬 된다.-->
+</mapper>
