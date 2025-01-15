@@ -41,15 +41,56 @@
 </select>
 <!-- getList : 전체조회 -->
 <select id="getList" resultType="BoardDTO">
-    select bno
-         ,title
-         ,content
-         ,writer
-         ,regdate
-   FROM tbl_board
+ SELECT RN ,BNO, TITLE, WRITER, REGDATE
+ FROM (
+       select /*+index_desc(TBL_BOARD PK_BOARD)*/ 
+	           ROWNUM RN, 
+	           BNO, 
+	           TITLE, 
+	           WRITER,
+	           REGDATE
+    	from tbl_board 
    <![CDATA[
-   WHERE bno > 0
-  ]]>   
+    	WHERE ROWNUM <=  #{end}
+   ]]>   
+    
+    <!-- 쿼리 들어올 자리  -->
+  		<include refid="criteria"></include>
+  	
+    	
+) WHERE RN >= #{start}
+  
 </select>
+<!-- [CDATA[  ]] 부등호에 사용을 하는데 이때 부등호가 큰 경우에만 적용, 작은 경우에는 적용할 필요 없음   -->
+<!-- 카운트 -->
+<select id="getcount" resultType="int">
+  SELECT COUNT(*) FROM TBL_BOARD
+  <where>
+  	<include refid="criteria"></include>
+  </where>
+</select>
+
+<sql id="criteria">
+	<if test="keyword != null and !keyword.equals('')">
+		<trim prefix="and (" suffix=")" prefixOverrides="or">
+			<foreach item="type" collection="typeArr"> <!-- for문 돌릴 배열  collection , 인덱스 값 = item-->
+				<trim prefix="or">
+					<choose>
+						<when test='type == "T"'>
+							 TITLE like '%' || #{keyword} || '%'
+						</when>
+						<when test=" type == 'C'.toString()">
+							 CONTENT like '%' || #{keyword} || '%'
+						</when>
+						<when test=" type == 'W'.toString()">
+							 WRITER like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+   	</if>
+</sql>
+
 <!-- orderby 하는 것과  WHERE bno > 0 는 동일하다 왜냐하면 bno가 기본키 이기 때문에 by indexRowId순으로 정렬 된다.-->
 </mapper>
