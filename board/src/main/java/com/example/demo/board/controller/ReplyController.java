@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -35,7 +36,7 @@ public class ReplyController {
   }
   
   //수정처리 
-  @PostMapping("/{rno}")
+  @PutMapping("/{rno}")
   public String modify(
 		                @RequestBody ReplyDTO replyDTO,
 		                @PathVariable(name="rno") Long rno) {
@@ -63,7 +64,7 @@ public class ReplyController {
   @GetMapping("/pages/{bno}/{page}")
   public ReplyPageDTO getList(@PathVariable(name="page") int page,
 		                      @PathVariable(name="bno") Long bno) {
-	  ReplySearchDTO replySearchDTO = new ReplySearchDTO(page,10);
+	  ReplySearchDTO replySearchDTO = new ReplySearchDTO(page,3);
 	  return service.getList(replySearchDTO, bno);
   }
   

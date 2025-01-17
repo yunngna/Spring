@@ -64,15 +64,22 @@
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일자</th>
+				
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="board : ${list}">
 				<td th:text="${board.bno}">1</td>
-				<td th:text="${board.title}" th:onclick="|location.href='get?bno=${board.bno}'|">제목</td>
+				<!-- <td 
+				th:onclick="|location.href='get?bno=${board.bno}'|">[[${board.title}]][[${board.replycnt]]</td> -->
+				
+				<td th:text="|${board.title} [${board.replycnt}]|" 
+				th:onclick="|location.href='get?bno=${board.bno}'|"></td>
+				
 				<!-- `` == || 백팁과 같은 역할 (한 문자로 묶어준다) -->
 				<td th:text="${board.writer}">홍길동</td>
 				<td th:text="${board.regdate}">2025/01/06</td>
+				
 			</tr>
 		</tbody>
 	</table>

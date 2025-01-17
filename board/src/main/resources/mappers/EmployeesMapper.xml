@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.insa.mapper.EmployeesMapper">
+<!-- getList : 전체조회 -->
+<select id="getList" resultType="EmployeesDTO">
+select employee_id
+      ,first_name
+      ,last_name
+      ,email
+      ,phone_number
+      ,hire_date
+      ,job_id
+      ,salary
+      ,commission_pct
+      ,manager_id
+      ,department_id
+from employees
+</select>
+
+<!-- joblist 직업조회 -->
+<select id="jobList" resultType="JobsDTO">
+select job_id
+      ,job_title
+      ,min_salary
+      ,max_salary
+from jobs
+</select>
+
+<!-- deplist 부서조회  -->
+
+<!-- insert : 등록  -->
+</mapper>

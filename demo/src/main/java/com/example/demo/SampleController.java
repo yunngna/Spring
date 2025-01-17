@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
+//Rest서버 == data 
 @Slf4j
 @RestController
 //@Controller
@@ -84,7 +84,10 @@ public class SampleController {
 	}
 	
 	//post만 json 타입을 파라미터로 받아 원하는데이터 타입으로 변환 가능 
-	//requestBody
+	//RequestBody
+	
+	//1) json String  -> @RequestBody 커맨드객체
+	//2) query String -> 커맨드객체
 	
 //	@PostMapping("/ticket")
 //	public Ticket convert(@RequestBody Ticket ticket) { 

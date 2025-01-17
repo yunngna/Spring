@@ -39,20 +39,28 @@
    FROM tbl_board
    WHERE bno = #{bno}
 </select>
+<!--updateReplyCnt : 댓글수 업데이트  -->
+<update id="updateReplyCnt">
+	update tbl_board
+	set replycnt = replycnt +  #{amount} 
+	where bno = #{bno}
+</update>
+
 <!-- getList : 전체조회 -->
 <select id="getList" resultType="BoardDTO">
- SELECT RN ,BNO, TITLE, WRITER, REGDATE
+ SELECT RN ,BNO, TITLE, WRITER, REGDATE, replycnt
  FROM (
        select /*+index_desc(TBL_BOARD PK_BOARD)*/ 
 	           ROWNUM RN, 
 	           BNO, 
 	           TITLE, 
 	           WRITER,
-	           REGDATE
+	           REGDATE,
+	           replycnt
     	from tbl_board 
-   <![CDATA[
-    	WHERE ROWNUM <=  #{end}
-   ]]>   
+   
+    	WHERE ROWNUM <![CDATA[ <=  ]]>   #{end}
+   
     
     <!-- 쿼리 들어올 자리  -->
   		<include refid="criteria"></include>

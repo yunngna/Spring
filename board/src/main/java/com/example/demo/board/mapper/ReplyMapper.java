@@ -13,7 +13,8 @@ public interface ReplyMapper {
 	
 	int update(ReplyDTO reply);
 	
-	int delete(Long rno);
+	int delete(Long rno); // 글 삭제 
+	int deleteByBno(Long bno); //글 삭제시 댓글 삭제 
 	
 	ReplyDTO read(Long bno);
 	
@@ -21,5 +22,7 @@ public interface ReplyMapper {
 			               @Param("bno") Long bno);
 	
 	int getCountByBno (Long bno);
+	
+
 
 }

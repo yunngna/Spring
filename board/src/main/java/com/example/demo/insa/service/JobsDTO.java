@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeptDTO {
-	private String departmentId;
-	private String departmentName;
-	private String managerId;
-	private String locationId;
+public class JobsDTO {
+	private String jobId;
+	private String jobTitle;
+	private Long minSalary;
+	private Long maxSalary;
 }

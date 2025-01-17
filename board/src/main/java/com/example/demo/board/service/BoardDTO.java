@@ -24,6 +24,8 @@ public class BoardDTO {
 	  private String writer;
 	  private Date regdate;
 	  
+	  private int replycnt; //댓글 수 
+	  
 	  // Long 와 long의 차이 
 	  // Long 경우 객체 형성 이지만, long은 한개의 값만 가진다.
 	  //e.g Int 의 경우  null값을 가지지만, int 는 null 값이 아닌 정수 값만 가진다. 
