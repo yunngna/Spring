@@ -14,6 +14,7 @@ import com.example.demo.board.mapper.BoardMapper;
 import com.example.demo.board.service.BoardDTO;
 import com.example.demo.board.service.BoardSearchDTO;
 
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 //sysout 대신 로그를 사용 하려면 @Slf4j  추가 

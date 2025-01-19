@@ -2,6 +2,9 @@ package com.example.demo.board.service;
 
 import java.util.List;
 
+
+
+
 public interface BoardService {
 	
 	public void register(BoardDTO board);
