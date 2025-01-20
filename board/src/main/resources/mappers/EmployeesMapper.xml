@@ -27,6 +27,37 @@ from jobs
 </select>
 
 <!-- deplist 부서조회  -->
+<select id="deptList" resultType="DeptDTO">
+select *
+from departments
+</select>
 
 <!-- insert : 등록  -->
+<insert id="insert" parameterType="EmployeesDTO">
+insert into employees (
+					   employee_id
+				      ,first_name
+				      ,last_name
+				      ,email
+				      ,phone_number
+				      ,hire_date
+				      ,job_id
+				      ,salary
+				      ,commission_pct
+				      ,manager_id
+				      ,department_id)
+	values (#{employeeId}
+			,#{firstName}
+			,#{lastName}
+			,#{email}
+			,#{phoneNumber}
+			,#{hireDate}
+			,#{jobId}
+			,#{salary}
+			,#{commissionPct}
+			,#{managerId}
+			,#{departmentId}
+			)
+</insert>
+	
 </mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.securing.mapper.UserMapper">
+<resultMap type="UserDTO" id="userMap">
+	<id column="id" property="id"/> <!-- 기본키 -->
+	<result column="password" property="password"/>
+	<!--  private List<RoleDTO> roles;  을 밑에 넣은 것 이며, column="id" 는 getRole의 파라미터-->
+	<collection property="roles"
+	            ofType="RoleDTO"
+	            select="getRole"
+	            column="id" 
+	></collection>
+</resultMap>
+
+<!--  단건조회 -->
+<select id="getUser" resultMap="userMap">
+	select id
+	      ,login_id
+	      ,password
+	      ,full_name
+	      ,dept_name
+    from t_user
+    where login_id = #{loginId}
+</select>
+<!-- '{noop}'|| password as password -->
+<!-- 권한 조회 -->
+<select id="getRole" resultType="roleDTO">
+select role_name
+  from t_user_role u
+  join t_role r on  (u.role_id = r.id)
+where id = #{id}
+
+</select >
+
+</mapper>

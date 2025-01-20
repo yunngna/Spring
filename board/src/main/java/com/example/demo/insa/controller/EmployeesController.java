@@ -2,8 +2,11 @@ package com.example.demo.insa.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.board.service.BoardDTO;
 import com.example.demo.board.service.BoardService;
 import com.example.demo.insa.service.EmployeesDTO;
 import com.example.demo.insa.service.EmployeesService;
@@ -28,9 +31,22 @@ public class EmployeesController {
 	model.addAttribute("list", empService.getList());
 	}
 	
+	//드롭박스 정보 
 	@GetMapping("register")
-	public void register(){
-		
+	public void register(EmployeesDTO employee,Model model){
+		model.addAttribute("list",empService.getJobList());
+		model.addAttribute("deptList",empService.getDepList());
+	}
+	
+
+	
+	//등록 
+	@PostMapping("register")
+	public String registerProc(EmployeesDTO employee,
+			                 RedirectAttributes rttr) {
+		empService.register(employee);
+		rttr.addFlashAttribute("result",true);
+		return "redirect:/emp/list";
 	}
 	
 }
