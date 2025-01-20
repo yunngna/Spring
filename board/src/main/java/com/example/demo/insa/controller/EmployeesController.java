@@ -12,6 +12,9 @@ import com.example.demo.insa.service.EmployeesDTO;
 import com.example.demo.insa.service.EmployeesService;
 
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,8 +45,12 @@ public class EmployeesController {
 	
 	//등록 
 	@PostMapping("register")
-	public String registerProc(EmployeesDTO employee,
+	public String registerProc(@Validated EmployeesDTO employee,
+							 BindingResult bindingResult,
 			                 RedirectAttributes rttr) {
+//		if(bindingResult.hasErrors()) {
+//			return "emp/register";
+//		}
 		empService.register(employee);
 		rttr.addFlashAttribute("result",true);
 		return "redirect:/emp/list";

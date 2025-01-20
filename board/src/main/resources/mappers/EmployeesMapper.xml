@@ -34,30 +34,32 @@ from departments
 
 <!-- insert : 등록  -->
 <insert id="insert" parameterType="EmployeesDTO">
-insert into employees (
-					   employee_id
-				      ,first_name
-				      ,last_name
-				      ,email
-				      ,phone_number
-				      ,hire_date
-				      ,job_id
-				      ,salary
-				      ,commission_pct
-				      ,manager_id
-				      ,department_id)
-	values (#{employeeId}
-			,#{firstName}
-			,#{lastName}
-			,#{email}
-			,#{phoneNumber}
-			,#{hireDate}
-			,#{jobId}
-			,#{salary}
-			,#{commissionPct}
-			,#{managerId}
-			,#{departmentId}
-			)
+ INSERT INTO employees (
+        employee_id,
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        hire_date,
+        job_id,
+        salary,
+        commission_pct,
+        manager_id,
+        department_id
+    )
+    VALUES (
+        EMPLOYEES_SEQ.nextval,
+        #{firstName},
+        #{lastName},
+        #{email},
+        #{phoneNumber},
+        #{hireDate},
+        #{jobId},
+        #{salary},
+        #{commissionPct},
+        #{managerId},
+        #{departmentId}
+    )
 </insert>
 	
 </mapper>
