@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BookMapper">
+<!-- insert 등록  -->
+<insert id="insert" parameterType="BookDTO">
+	insert into book_tbl_06 (BOOK_NO         
+	       		  ,BOOK_NAME       
+	              ,BOOK_COVERIMG   
+	              ,BOOK_DATE       
+	              ,BOOK_PRICE      
+	              ,BOOK_PUBLISHER  
+	              ,BOOK_INFO)
+	values (seq_book.nextval
+			,#{bookName}
+			,#{bookCoverimg}
+			,#{bookDate}
+			,#{bookPrice}
+			,#{bookPublisher}
+			,#{bookInfo}
+	)    
+</insert>
+<!-- getlist : 조회 -->
+<select id="getlist" resultType="BookDTO" >
+select  BOOK_NO         
+       ,BOOK_NAME       
+       ,BOOK_COVERIMG   
+       ,BOOK_DATE       
+       ,BOOK_PRICE      
+       , BOOK_PUBLISHER  
+       ,BOOK_INFO
+from book_tbl_06
+</select>
+
+<!-- rentGetlist : 대여조회 -->
+<select id="rentGetlist" resultType="RentDTO">
+SELECT r.book_no
+      ,b.book_name
+      ,r.RENT_PRICE
+      ,r.RENT_STATUS
+FROM rent_tbl_06 r 
+JOIN book_tbl_06 b
+ON r.book_no = b.book_no
+
+
+</select>
+
+</mapper>

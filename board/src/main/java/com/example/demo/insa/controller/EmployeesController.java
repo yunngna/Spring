@@ -51,6 +51,7 @@ public class EmployeesController {
 //		if(bindingResult.hasErrors()) {
 //			return "emp/register";
 //		}
+		log.info(employee.toString());
 		empService.register(employee);
 		rttr.addFlashAttribute("result",true);
 		return "redirect:/emp/list";

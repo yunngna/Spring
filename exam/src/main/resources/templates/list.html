@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<title>Insert title here</title>
+<script th:inline="javascript">
+	const result = [[${result}]]
+	if( result ){
+		alert("도서등록이 완료 되었습니다.");
+	}
+	
+	
+	
+</script>
+</head>
+<body>
+
+<div class="container">
+	<h3>도서조회/수정</h3>
+	
+	<!-- 게시글 목록 시작 -->
+	<table  class="table">
+		<thead>
+			<tr>
+				<th>도서번호</th>
+				<th>도서명</th>
+				<th>표지</th>
+				<th>출판일자</th>
+				<th>금액</th>
+				<th>출판사</th>
+				<th>도서소개</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="book : ${list}">
+				<td th:text="${book.bookNo}">1</td>
+				<td th:text="${book.bookName}">도서명</td>
+				<td><img th:src="|/images/${book.bookCoverimg}|" alt="bookCoverimg"/></td>
+				<td th:text="${#dates.format(book.bookDate, 'yyyy/MM/dd')}">출판일자</td>
+				<td th:text="${#numbers.formatInteger(book.bookPrice, 3, 'COMMA')}">금액</td>
+				
+				<td th:text="${book.bookPublisher}">출판사</td>
+				<td th:text="${book.bookInfo}">도서소개</td>
+				
+			</tr>
+		</tbody>
+	</table>
+	
+	
+</div>
+
+
+
+
+</body>
+</html>
+<style>
+img{
+width:50px;
+height:50px;
+}
+</style>

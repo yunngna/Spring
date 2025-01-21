@@ -67,7 +67,7 @@ public class ReplyControllerTest {
     	)
     	//then
     	.andExpect(status().isOk())
-    	.andExpect(jsonPath("$.reply").value("댓글수정"))
+    	.andExpect(jsonPath("$.reply").value("댓글수정")) //reply 필드 값을 꺼내 그 내용이 "댓글수정" 과 동일한지 체크 
        .andDo(print())  ;
 
     }
