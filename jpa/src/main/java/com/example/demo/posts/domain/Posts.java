@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
 	//entity 자체를 건들면 값이 변화하기 때문에 각 기능 별로 dto를 만들어서 처리 해준다 . 즉 enity -> dto , dto -> entity 과정 필요 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

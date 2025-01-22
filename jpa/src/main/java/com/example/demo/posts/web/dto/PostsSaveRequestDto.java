@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor //기본생성자 
 //등록 dto
 public class PostsSaveRequestDto {
-	//등록시 title, contetn, auther 세 항목 모두 등록 해야 한다.
+	//등록시 title, content, author 세 항목 모두 등록 해야 한다.
 		private String title;
 	    private String content;
 	    private String author;
