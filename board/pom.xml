@@ -88,6 +88,11 @@
 		  <groupId>nz.net.ultraq.thymeleaf</groupId>
 		  <artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
+		<dependency>
+			 <groupId>net.sf.jasperreports</groupId>
+			 <artifactId>jasperreports</artifactId>
+			 <version>6.4.0</version>
+		 </dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 		<!--<dependency>
